@@ -19,11 +19,11 @@ const VERNIER_DIVISIONS = 10;
 const VERNIER_WIDTH_PX = (VERNIER_DIVISIONS - 1) * (PIXELS_PER_CM / 10); // 9mm = 90px
 
 const OBJECTS = [
-  { name: 'Gear Shaft', color: 'bg-slate-400' },
-  { name: 'Engine Cylinder', color: 'bg-amber-600' },
-  { name: 'Plasma Injector', color: 'bg-cyan-500' },
-  { name: 'Flux Capacitor', color: 'bg-purple-500' },
-  { name: 'Quantum Core', color: 'bg-emerald-400' },
+  { name: 'Poros Roda Gigi', color: 'bg-slate-400' },
+  { name: 'Silinder Mesin', color: 'bg-amber-600' },
+  { name: 'Injektor Plasma', color: 'bg-cyan-500' },
+  { name: 'Kapasitor Fluks', color: 'bg-purple-500' },
+  { name: 'Inti Kuantum', color: 'bg-emerald-400' },
 ];
 
 // ----------------------------------------------------------------------
@@ -79,7 +79,7 @@ export default function App() {
     const targetPx = Math.round(targetWidthCm * PIXELS_PER_CM);
     if (Math.abs(jawPosition - targetPx) > 2) {
       // The jaw isn't even touching the object correctly visually
-      setFeedback({ type: 'error', text: 'Adjust the caliper carefully to perfectly fit the part!' });
+      setFeedback({ type: 'error', text: 'Atur jangka sorong dengan hati-hati agar pas menempel pada komponen!' });
       return;
     }
 
@@ -94,11 +94,11 @@ export default function App() {
       // Success
       setScore(s => s + 100 * energy); // multiplier based on remaining energy
       setGameState('result');
-      setFeedback({ type: 'success', text: 'Measurement Precise! Part successfully calibrated.' });
+      setFeedback({ type: 'success', text: 'Pengukuran Presisi! Suku cadang berhasil dikalibrasi.' });
     } else {
       // Wrong calculation
       setEnergy(e => e - 1);
-      setFeedback({ type: 'error', text: `Incorrect reading. HINT: Look where the Vernier scale aligns perfectly!` });
+      setFeedback({ type: 'error', text: `Pengukuran salah. PETUNJUK: Coba lihat di mana skala Nonius sejajar sempurna!` });
       if (energy - 1 <= 0) {
         setTimeout(() => setGameState('gameover'), 1500);
       }
@@ -126,7 +126,7 @@ export default function App() {
             <h1 className="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 uppercase">
               RekaUkur
             </h1>
-            <p className="text-xs text-cyan-500/80 tracking-widest uppercase">System Active</p>
+            <p className="text-xs text-cyan-500/80 tracking-widest uppercase">Sistem Aktif</p>
           </div>
         </div>
         
@@ -138,12 +138,12 @@ export default function App() {
             </div>
             <div className="w-px h-8 bg-slate-700"></div>
             <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Score</span>
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Skor</span>
               <span className="font-mono text-lg font-semibold text-amber-400">{score}</span>
             </div>
             <div className="w-px h-8 bg-slate-700"></div>
             <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Energy</span>
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Energi</span>
               <div className="flex gap-1 mt-1">
                 {[1, 2, 3].map(i => (
                   <div key={i} className={cn("w-3 h-4 rounded-sm border", i <= energy ? "bg-emerald-400 border-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.5)]" : "bg-slate-700 border-slate-600 block opacity-30")} />
@@ -163,17 +163,17 @@ export default function App() {
             <div className="w-24 h-24 mx-auto bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(6,182,212,0.4)]">
               <Crosshair className="w-12 h-12 text-white" />
             </div>
-            <h2 className="text-4xl font-black mb-4">MEASUREMENT QUEST</h2>
+            <h2 className="text-4xl font-black mb-4">MISI PENGUKURAN</h2>
             <p className="text-slate-300 mb-8 leading-relaxed">
-              Mechanic, the time machine generator is broken! We need precise replacement parts. Use the Vernier Caliper to measure the damaged components.<br/><br/>
-              Align the jaw, read the Main Scale, find the matching line on the Vernier Scale, and input the precise measurement.
+              Mekanik, generator mesin waktu rusak! Kita butuh suku cadang pengganti yang presisi. Gunakan Jangka Sorong untuk mengukur komponen yang rusak.<br/><br/>
+              Sejajarkan rahang, baca Skala Utama, temukan garis yang sejajar pada Skala Nonius, dan masukkan ukuran yang presisi.
             </p>
             <motion.button 
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               onClick={handleStart}
               className="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold uppercase tracking-widest rounded-xl transition-colors shadow-[0_0_20px_rgba(6,182,212,0.5)]"
             >
-              Start Mission
+              Mulai Misi
             </motion.button>
           </motion.div>
         )}
@@ -190,10 +190,10 @@ export default function App() {
                   <div className="w-20 h-20 mx-auto bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-4 border border-emerald-500/50">
                     <Check className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Part Crafted!</h3>
-                  <p className="text-slate-300 mb-6">Excellent precision. The part fits perfectly.</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Komponen Selesai!</h3>
+                  <p className="text-slate-300 mb-6">Presisi yang luar biasa. Komponen terpasang dengan sempurna.</p>
                   <button onClick={handleNextLevel} className="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
-                    Next Level <ChevronRight className="w-5 h-5" />
+                    Level Selanjutnya <ChevronRight className="w-5 h-5" />
                   </button>
                 </>
               )}
@@ -202,11 +202,11 @@ export default function App() {
                   <div className="w-20 h-20 mx-auto bg-red-500/20 text-red-400 rounded-full flex items-center justify-center mb-4 border border-red-500/50">
                     <BatteryLow className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Systems offline</h3>
-                  <p className="text-slate-300 mb-6">Too many incorrect measurements. We ran out of energy!</p>
-                  <p className="mb-6 font-mono text-xl text-amber-400">Final Score: {score}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Sistem Offline</h3>
+                  <p className="text-slate-300 mb-6">Terlalu banyak salah ukur. Kita kehabisan energi!</p>
+                  <p className="mb-6 font-mono text-xl text-amber-400">Skor Akhir: {score}</p>
                   <button onClick={handleStart} className="w-full py-4 bg-slate-700 hover:bg-slate-600 font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
-                    Restart Simulation <RefreshCcw className="w-5 h-5" />
+                    Mulai Ulang Simulasi <RefreshCcw className="w-5 h-5" />
                   </button>
                 </>
               )}
@@ -215,11 +215,11 @@ export default function App() {
                   <div className="w-20 h-20 mx-auto bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center mb-4 border border-cyan-500/50">
                     <BatteryFull className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Mission Accomplished!</h3>
-                  <p className="text-slate-300 mb-6">The time machine is fully repaired! You are a master of precision.</p>
-                  <p className="mb-8 font-mono text-3xl font-bold text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">Score: {score}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Misi Berhasil!</h3>
+                  <p className="text-slate-300 mb-6">Mesin waktu berhasil diperbaiki! Anda adalah master presisi.</p>
+                  <p className="mb-8 font-mono text-3xl font-bold text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">Skor: {score}</p>
                   <button onClick={handleStart} className="w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
-                    Play Again
+                    Main Lagi
                   </button>
                 </>
               )}
@@ -236,7 +236,7 @@ export default function App() {
               
               {/* MAGNIFIER LENS */}
               <div className="absolute top-[-90px] left-1/2 -translate-x-1/2 z-20 pointer-events-none hidden md:flex flex-col items-center">
-                <div className="text-xs text-cyan-400 font-mono tracking-widest mb-1 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">Digital Magnifier</div>
+                <div className="text-xs text-cyan-400 font-mono tracking-widest mb-1 uppercase drop-shadow-[0_0_5px_rgba(6,182,212,0.8)]">Kaca Pembesar Digital</div>
                 <div className="w-56 h-32 rounded-2xl border-2 border-cyan-500 bg-slate-900/90 backdrop-blur-xl shadow-[0_0_30px_rgba(6,182,212,0.3)] relative overflow-hidden flex items-center justify-center">
                   {/* Inner grid */}
                   <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.1)_1px,transparent_1px)] bg-[size:100%_4px]"></div>
@@ -272,11 +272,18 @@ export default function App() {
                 
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-slate-400 font-bold uppercase tracking-wider text-xs mb-1">Target Component</h3>
+                    <h3 className="text-slate-400 font-bold uppercase tracking-wider text-xs mb-1">Komponen Target</h3>
                     <div className="text-xl font-bold text-white flex items-center gap-2">
                        <div className={cn("w-3 h-3 rounded-full", currentObjectColor)}></div>
                        {currentObjectName}
                     </div>
+                  </div>
+                  
+                  {/* KUNCI JAWABAN */}
+                  <div className="p-3 bg-cyan-900/40 border border-cyan-500/50 rounded-xl">
+                     <p className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest mb-1">Kunci Jawaban</p>
+                     <p className="text-sm text-cyan-100 font-mono">Skala Utama: {Math.floor(targetWidthCm * 10) / 10} cm</p>
+                     <p className="text-sm text-cyan-100 font-mono">Skala Nonius: {Math.round((targetWidthCm * 100) % 10)}</p>
                   </div>
                   
                   {feedback && (
@@ -292,7 +299,7 @@ export default function App() {
                   {!feedback && (
                     <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-700 text-sm text-slate-400 flex items-start gap-3">
                       <div className="text-cyan-500 mt-0.5"><Crosshair className="w-4 h-4" /></div>
-                      <p>Drag the translucent jaw to sandwich the part. Then read the scale where the line aligns perfectly.</p>
+                      <p>Geser rahang transparan untuk mengapit komponen. Kemudian baca skala di mana garis sejajar sempurna.</p>
                     </div>
                   )}
                 </div>
@@ -300,7 +307,7 @@ export default function App() {
                 <div className="flex flex-col gap-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-2">Main Scale Reading</label>
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-2">Bacaan Skala Utama</label>
                       <div className="relative group">
                         <input 
                           type="number" step="0.1"
@@ -313,7 +320,7 @@ export default function App() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-2">Vernier Scale Line</label>
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-2">Garis Skala Nonius</label>
                       <div className="relative">
                         <input 
                           type="number" min="0" max="10" step="1"
@@ -333,7 +340,7 @@ export default function App() {
                     onClick={handleCraft}
                     className="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-900 font-bold uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_rgba(52,211,153,0.3)] disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed mt-auto"
                   >
-                    Craft Part
+                    Buat Komponen
                   </motion.button>
                 </div>
                 
@@ -439,7 +446,7 @@ function Caliper({ bodyWidthPx, jawPosition, setJawPosition, isActive }: { bodyW
           </div>
           
           <div className="absolute bottom-2 left-6 right-2 text-[8px] text-cyan-400 opacity-60 tracking-widest font-sans flex justify-between">
-            <span>VERNIER x 0.01cm</span>
+            <span>NONIUS x 0.01cm</span>
             <Crosshair className="w-3 h-3" />
           </div>
         </div>
